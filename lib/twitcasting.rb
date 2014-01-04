@@ -1,5 +1,5 @@
 require "twitcasting/version"
-require "curb"
+require "curl"
 require "json"
 
 module TwitCasting
