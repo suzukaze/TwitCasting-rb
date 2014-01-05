@@ -10,12 +10,14 @@ module TwitCasting
 
     end
 
-    def get_comments(user, movieid = nil, from = nil)
+    def get_comments(options = {})
       params = {}
       params['type'] = 'json'
-      params['user'] = user
-      params['movieid'] = movieid if movieid
-      params['from'] = from if from
+      params['user'] = options[:user] if options[:user]
+      params['movieid'] = options[:movieid] if options[:movieid]
+      params['from'] = options[:from] if options[:from]
+      params['count'] = options[:count] if options[:count]
+      params['since'] = options[:since] if options[:since]
       url = BASE_URL + 'commentlist' + make_query_string(params)
       parse_get_comments(get(url))
     end
