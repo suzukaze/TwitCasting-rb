@@ -6,8 +6,15 @@ module TwitCasting
   class Client
     BASE_URL = 'http://api.twitcasting.tv/api/'
 
-    def initialize(options = {})
+    def initialize
+    end
 
+    def get_live_status(user)
+      params = {}
+      params['type'] = 'json'
+      params['user'] = user
+
+      parse_live_status(get(BASE_URL + 'livestatus' + make_query_string(params)))
     end
 
     def get_comments(options = {})
@@ -30,6 +37,16 @@ module TwitCasting
 
     def body(result)
       result[:body]
+    end
+
+    def parse_live_status(result)
+      response = response(result)
+
+      return nil unless response == 200
+
+      body = body(result)
+
+      LiveStatus.new(body)
     end
 
     def parse_get_comments(result)
@@ -75,6 +92,35 @@ module TwitCasting
 #      { :body => JSON.parse(c.body_str), :response => c.response_code }
 #    end
 
+  end
+
+  class LiveStatus
+
+    attr_reader :islive,
+                :protected,
+                :movieid,
+                :comments,
+                :viewers,
+                :total,
+                :duration,
+                :subtitle,
+                :typing,
+                :hashtag,
+                :title
+
+    def initialize(options = {})
+      @islive = options['islive']
+      @protected = options['protected']
+      @movieid = options['movieid']
+      @comments = options['comments']
+      @viewers = options['viewers']
+      @total = options['total']
+      @duration = options['duration']
+      @subtitle = options['subtitle']
+      @typing = options['typing']
+      @hashtag = options['hashtag']
+      @title = options['title']
+    end
   end
 
   class Comment
