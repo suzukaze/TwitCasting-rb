@@ -18,8 +18,8 @@ module TwitCasting
       params['from'] = options[:from] if options[:from]
       params['count'] = options[:count] if options[:count]
       params['since'] = options[:since] if options[:since]
-      url = BASE_URL + 'commentlist' + make_query_string(params)
-      parse_get_comments(get(url))
+
+      parse_get_comments(get(BASE_URL + 'commentlist' + make_query_string(params)))
     end
 
     private
@@ -34,10 +34,13 @@ module TwitCasting
 
     def parse_get_comments(result)
       response = response(result)
+
       return nil unless response == 200
+
       body = body(result)
       comments = []
       body.each { |value| comments << Comment.new(value) }
+
       comments
     end
 
@@ -46,17 +49,20 @@ module TwitCasting
       options.each do |key, value|
         query += "#{key}=#{value.to_s.gsub(" ", "+")}&"
       end
-      query = query[0...-1]
+
+      query[0...-1]
     end
 
     def post(url, data)
       JSON.parse(Curl.post(url, data).body_str)
       c = Curl.post(url, data)
+
       { :body => JSON.parse(c.body_str), :response => c.response_code }
     end
 
     def get(url)
       c = Curl.get(url)
+
       { :body => JSON.parse(c.body_str), :response => c.response_code }
     end
 
