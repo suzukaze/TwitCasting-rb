@@ -1,6 +1,6 @@
-# What's Twicasting-rb
+# What's TwitCasting-rb
 
-Twicasting is a live streaming service. Twicasting-rb is Twicasting API wrapper in Ruby implements.
+TwitCasting is a live streaming service. TwitCasting-rb is TwitCasting API wrapper in Ruby implements.
 
 ## Installation
 
