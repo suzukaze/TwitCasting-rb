@@ -22,7 +22,7 @@ require 'twitcasting'
 
 # Get messages.
 twitcast = TwitCasting::Client.new
-comments = twitcast.get_comments({:user => 'twitcastest'})
+comments = twitcast.get_comments('twitcastest'})
 
 # Display messages.
 puts "-" * 40

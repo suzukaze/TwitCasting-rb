@@ -17,10 +17,10 @@ module TwitCasting
       parse_live_status(get(BASE_URL + 'livestatus' + make_query_string(params)))
     end
 
-    def get_comments(options = {})
+    def get_comments(user, options = {})
       params = {}
       params['type'] = 'json'
-      params['user'] = options[:user] if options[:user]
+      params['user'] = user if user
       params['movieid'] = options[:movieid] if options[:movieid]
       params['from'] = options[:from] if options[:from]
       params['count'] = options[:count] if options[:count]
