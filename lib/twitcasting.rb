@@ -108,51 +108,51 @@ module TwitCasting
                 :hashtag,
                 :title
 
-    def initialize(options = {})
-      @islive = options['islive']
-      @protected = options['protected']
-      @movieid = options['movieid']
-      @comments = options['comments']
-      @viewers = options['viewers']
-      @total = options['total']
-      @duration = options['duration']
-      @subtitle = options['subtitle']
-      @typing = options['typing']
-      @hashtag = options['hashtag']
-      @title = options['title']
+    def initialize(elements = {})
+      @islive = elements['islive']
+      @protected = elements['protected']
+      @movieid = elements['movieid']
+      @comments = elements['comments']
+      @viewers = elements['viewers']
+      @total = elements['total']
+      @duration = elements['duration']
+      @subtitle = elements['subtitle']
+      @typing = elements['typing']
+      @hashtag = elements['hashtag']
+      @title = elements['title']
     end
   end
 
   class Comment
 
-    attr_accessor :commentid,
-                  :movieid,
-                  :userid,
-                  :socialid,
-                  :message,
-                  :userstatus,
-                  :moviestatus,
-                  :created,
-                  :thumbnail,
-                  :latitude,
-                  :longuitude,
-                  :statusid,
-                  :duration
+    attr_reader :commentid,
+                :movieid,
+                :userid,
+                :socialid,
+                :message,
+                :userstatus,
+                :moviestatus,
+                :created,
+                :thumbnail,
+                :latitude,
+                :longuitude,
+                :statusid,
+                :duration
 
-    def initialize(options = {})
-      @commentid = options['commentid']
-      @movieid = options['movieid']
-      @message = options['message']
-      @userid = options['userid']
-      @socialid = options['socialid']
-      @userstatus = options['userstatus']
-      @moviestatus = options['moviestatus']
-      @created = options['created'].to_i if options['created']
-      @thumbnail = options['thumbnail']
-      @latitude = options['latitude']
-      @longuitude = options['longuitude']
-      @statusid = options['statusid']
-      @duration = options['duration']
+    def initialize(elements = {})
+      @commentid = elements['commentid']
+      @movieid = elements['movieid']
+      @message = elements['message']
+      @userid = elements['userid']
+      @socialid = elements['socialid']
+      @userstatus = elements['userstatus']
+      @moviestatus = elements['moviestatus']
+      @created = elements['created'].to_i if elements['created']
+      @thumbnail = elements['thumbnail']
+      @latitude = elements['latitude']
+      @longuitude = elements['longuitude']
+      @statusid = elements['statusid']
+      @duration = elements['duration']
     end
 
   end
